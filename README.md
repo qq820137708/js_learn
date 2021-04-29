@@ -89,3 +89,17 @@ js前端基础进阶
 2. 属性__proto__的作用就是当访问一个对象的属性时，如果该对象内部不存在这个属性，那么就会去它的__proto__属性所指向的那个对象（父对象）里找，一直找，直到__proto__属性的终点null，再往上找就相当于在null上取值，会报错。通过__proto__属性将对象连接起来的这条链路即我们所谓的原型链。
 3. 属性prototype的作用就是让该函数所实例化的对象们都可以找到公用的属性和方法，即f1.__proto__ === Foo.prototype。
 4. 属性constructor的含义就是指向该对象的构造函数，所有函数（此时看成对象了）最终的构造函数都指向Function。
+
+# 前端基础进阶（六）：在chrome开发者工具中观察函数调用栈、作用域链与闭包
+## 断点调试
+- 在chrome的开发者工具中，通过断点调试，我们能够非常方便的一步一步的观察JavaScript的执行过程，直观感知函数调用栈，作用域链，变量对象，闭包，this等关键信息的变化。因此，断点调试对于快速定位代码错误，快速了解代码的执行过程有着非常重要的作用，这也是我们前端开发者必不可少的一个高级技能。
+## 认识断点调试工具
+![image](https://user-images.githubusercontent.com/42436934/116520275-1a884180-a905-11eb-8a5b-b6b3f60de4f5.png)
+在最右侧上方，有一排图标。我们可以通过使用他们来控制函数的执行顺序。从左到右他们依次是：
+- resume/pause script execution（恢复/暂停脚本执行）
+- step over next function call（跨过，实际表现是不遇到函数时，执行下一步。遇到函数时，不进入函数直接执行下一步）
+- step into next function call（跨入，实际表现是不遇到函数时，执行下一步。遇到到函数时，进入函数执行上下文）
+- step out of current function（跳出当前函数）
+- deactivate breakpoints（停用断点）
+- don‘t pause on exceptions（不暂停异常捕）
+
