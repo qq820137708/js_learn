@@ -209,3 +209,14 @@ console.log(s1.getName());  // ming
 console.log(s1.getAge());   // 22
 console.log(s1.getGrade()); // 5
 ```
+## 八、属性类型
+在ECMAScript5中，对每个属性都添加了几个属性类型，来描述这些属性的特点。他们分别是
+
+- configurable: 表示该属性是否能被delete删除。当其值为false时，其他的特性也不能被改变。默认值为true
+- enumerable: 是否能枚举。也就是是否能被for-in遍历。默认值为true
+- writable: 是否能修改值。默认为true
+- value: 该属性的具体值是多少。默认为undefined
+- get: 当我们通过person.name访问name的值时，get将被调用。该方法可以自定义返回的具体值时多少。get默认值为undefined
+- set: 当我们通过person.name = 'Jake'设置name的值时，set方法将被调用。该方法可以自定义设置值的具体方式。set默认值为undefined
+
+注：需要注意的是，不能同时设置value、writable 与 get、set的值
