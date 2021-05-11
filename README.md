@@ -151,4 +151,61 @@ function createCurry(func, args) {
     }
 }
 ```
+## 柯里化的特点：
 
+- 接收单一参数，将更多的参数通过回调函数来搞定？
+- 返回一个新函数，用于处理所有的想要传入的参数；
+- 需要利用call/apply与arguments对象收集参数；
+- 返回的这个函数正是用来处理收集起来的参数。
+
+# 前端基础进阶（九）：详解面向对象、构造函数、原型与原型链
+## 一、对象的定义(无序属性的集合，其属性可以包含基本值，对象或者函数)
+## 二、工厂模式(顾名思义，工厂模式就是我们提供一个模子，然后通过这个模子复制出我们需要的对象。我们需要多少个，就复制多少个)
+## 三、构造函数
+- 与普通函数相比，构造函数并没有任何特别的地方，首字母大写只是我们约定的小规定，用于区分普通函数；
+- new关键字让构造函数具有了与普通函数不同的许多特点，而new的过程中，执行了如下过程：
+1. 声明一个中间对象；
+2. 将该中间对象的原型指向构造函数的原型；
+3. 将构造函数的this，指向该中间对象；
+4. 返回该中间对象，即返回实例对象。
+## 四、原型(当我们访问实例对象中的属性或者方法时，会优先访问实例对象自身的属性和方法)
+## 五、原型链(实例对象能够通过原型链，访问到处于原型链上对象的所有属性与方法)
+## 六、继承
+```js
+function Person(name, age) {
+    this.name = name;
+    this.age = age;
+}
+Person.prototype.getName = function() {
+    return this.name
+}
+Person.prototype.getAge = function() {
+    return this.age;
+}
+
+function Student(name, age, grade) {
+    // 构造函数继承
+    Person.call(this, name, age);
+    this.grade = grade;
+}
+
+// 原型继承
+Student.prototype = Object.create(Person.prototype, {
+    // 不要忘了重新指定构造函数
+    constructor: {
+        value: Student
+    },
+    getGrade: {
+        value: function() {
+            return this.grade
+        }
+    }
+})
+
+
+var s1 = new Student('ming', 22, 5);
+
+console.log(s1.getName());  // ming
+console.log(s1.getAge());   // 22
+console.log(s1.getGrade()); // 5
+```
